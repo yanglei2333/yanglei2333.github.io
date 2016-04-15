@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta  charset="UTF-8">
+    <title>杨蕾</title>
+    <style>
+
+        #tanmu{
+            width:1000px;
+            height:500px;
+            z-index:9999;
+        }
+
+        #textStyle{
+            position:absolute;
+            font-size:24px;
+            color:#fff;
+        }
+    </style>
+</head>
+
+<body text=#ffffff bgcolor=#000000>
+<div id="play" style="position:absolute; width:100%; z-index:-1">
+    <img src="1.jpg" width="100%"/>
+    <div id="tanmu">
+    </div>
+</div>
+
+<form>
+
+    <input type="text" id="text" value="这是弹幕..."/><input type="button" value="发送" onClick="tanmu();"/>
+
+</form>
+
+<script language="javascript">
+    var si;
+    function tanmu(){
+        clearInterval(si);
+        var text = document.getElementById("text");
+        var tanmu = document.getElementById("tanmu");
+        var textStyle="<font  id=\"textStyle\">"+text.value+"</font>";
+
+        mathHeight = Math.round(Math.random()*tanmu.offsetHeight)+"px";
+
+        var textLeft=tanmu.offsetWidth+"px";
+
+        tanmu.innerHTML=textStyle;
+
+        var textStyleObj = document.getElementById("textStyle");
+
+        textStyleObj.style.left=textLeft;
+        textStyleObj.style.top=mathHeight;
+
+        var x=parseInt(textStyleObj.style.left);
+
+        si = setInterval("xunhuan("+x+")",100);
+
+    }
+    function xunhuan(left){
+        var textStyleObj = document.getElementById("textStyle");
+        textStyleObj.style.left=left;
+
+        var x=parseInt(textStyleObj.style.left);
+
+        if(x<textStyleObj.style.width){
+            document.getElementById("tanmu").innerHTML="";
+            clearInterval(si);
+        }else{
+            x-=18;
+        }
+
+        textStyleObj.style.left=x+"px";
+    }
+</script>
+
+
+</body>
+</html>
