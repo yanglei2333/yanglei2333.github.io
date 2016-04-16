@@ -23,6 +23,7 @@
 <body text=#ffffff bgcolor=#000000>
 <div id="play" style="position:absolute; width:100%; z-index:-1">
     <img src="1.jpg" width="100%"/>
+
     <div id="tanmu">
     </div>
 </div>
@@ -30,6 +31,14 @@
 <form>
 
     <input type="text" id="text" value="这是弹幕..."/><input type="button" value="发送" onClick="tanmu();"/>
+    <!--<embed height="100" width="200" src="./song.mp3"></embed>-->
+
+    <div style="position:absolute;left:1000px;top:600px;">
+    <audio aria-flowto="left" controls="controls">
+        <source src="./song.mp3" type="audio/mp3" />
+        <source src="./song.ogg" type="audio/ogg" />
+    </audio>
+        </div>
 
 </form>
 
@@ -78,6 +87,7 @@
         <p ><font color=white size="4" >欢迎大神造访~~~！！！</font ></p >
       </p >
 </marquee >
+
 
 </body>
 </html>
