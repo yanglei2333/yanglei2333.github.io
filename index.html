@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC
         "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta  charset="UTF-8">
-    <h1  font-family="Helvetica" align="center">æˆ‘ä»¬çš„ç›®æ ‡æ˜¯æ˜Ÿè¾°ä¸å¤§æµ·</h1>
-    <title>æ¨è•¾</title>
+    <title>ÑîÀÙ</title>
+    <meta  charset= "gb2312" />
+    <h1  align="center">ÎÒÃÇµÄÄ¿±êÊÇĞÇ³½Óë´óº£</h1>
 
     <style>
         #tanmu{
@@ -32,7 +32,7 @@
 
 <form>
 
-    <input type="text" id="text" value="è¿™æ˜¯å¼¹å¹•..."/><input type="button" value="å‘é€" onClick="tanmu();"/>
+    <input type="text" id="text" value="ÕâÊÇµ¯Ä»..."/><input type="button" value="·¢ËÍ" onClick="tanmu();"/>
     <!--<embed height="100" width="200" src="./song.mp3"></embed>-->
 
     <div style="position:absolute;left:70%;top:70%;">
@@ -50,7 +50,7 @@
         clearInterval(si);
         var text = document.getElementById("text");
         var tanmu = document.getElementById("tanmu");
-        var textStyle="<font  id=\"textStyle\">"+text.value+"</font>";
+        var textStyle="<style id=\"textStyle\">"+text.value+"</style>";
 
         mathHeight = Math.round(Math.random()*tanmu.offsetHeight)+"px";
 
@@ -83,11 +83,20 @@
 
         textStyleObj.style.left=x+"px";
     }
+
+    if (localStorage.pagecount)
+    {
+        localStorage.pagecount=Number(localStorage.pagecount) +1;
+    }
+    else
+    {
+        localStorage.pagecount=1;
+    }
+    document.write("Visits: " + localStorage.pagecount + " time(s).");
 </script>
 
 <marquee style="width: 1100px; height: 200px" scrollamount="10" direction="left" >
-        <p ><font color=white size="4" >æ¬¢è¿å¤§ç¥é€ è®¿~~~ï¼ï¼ï¼</font ></p >
-      </p >
+        <p ><font color="white" size="4" >»¶Ó­´óÉñÔì·Ã~~~£¡£¡£¡</font ></p >
 </marquee >
 
 
