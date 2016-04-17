@@ -34,6 +34,9 @@
     <p>Welcome: <output id="welcome"></output></p>
     </div>
 
+<div style="position:absolute;left:81%;top:75%;" id="time">
+</div>
+
 <form>
 
     <input type="text" id="text" value="这是弹幕..."/><input type="button"  value="发送" onClick="tanmu();"/>
@@ -52,6 +55,7 @@
         </div>
 
 </form>
+
 
 <script language="javascript">
     var si;
@@ -93,6 +97,8 @@
         textStyleObj.style.left=x+"px";
     }
     </script>
+
+
 <script type="text/javascript">
     if(typeof (localStorage.lastname)!="undefined")
     {
@@ -133,6 +139,20 @@
         localStorage.pagecount=1;
     }
     document.write("Visits: " + localStorage.pagecount + " time(s).");
+</script>
+
+
+<script type="text/javascript">
+    setInterval("time()",100);
+   function time()
+   {
+       today = new Date();
+       var date;
+       var time;
+       date =(today.getFullYear())  + "/"+ (today.getMonth()%12 +1 ) + "/" + today.getDate() + "  " ;
+       time =today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+       document.getElementById("time").innerHTML=date+time;
+   }
 </script>
 
 <marquee style="width: 1100px; height: 200px" scrollamount="10" direction="left" >
