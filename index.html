@@ -58,12 +58,21 @@
         </div>
 
     <div style="position:absolute;left: 80%;top:5%;">
-        <input id="user" value="your name"/><input type="button" id="sign" value="登录" onClick="SignUp();"/>
+        <input id="name" value="your name"/>
+        <input type="button" id="sign" value="登录" onClick="SignUp();"/>
+        <b></b>
+        <input id="password" value="your password"/>
         <input type="button" id="quit" value="注销" onClick="LogOut();"/>
         </div>
 
+    <input type="button" value="test" onClick="f();"/>
+
 </form>
 
+
+<marquee style="width: 1100px; height: 200px" scrollamount="10" direction="left" >
+    <p  style=" color:white; fon-size:4px;font-family: 微软雅黑" >欢迎大神造访~~~！！！</p >
+</marquee >
 
 <script language="javascript">
     var si;
@@ -108,18 +117,24 @@
 
 
 <script type="text/javascript">
-    if(typeof (localStorage.lastname)!="undefined")
-    {
+    if(typeof (localStorage.lastname)!="undefined") {
         sign();
     }
-    else
-    {
+    else {
         document.getElementById("quit").style.visibility="hidden";
     }
     function SignUp()
     {
+        var name=document.getElementById("name").value;
+        var password=document.getElementById("password").value;
+            if(Check(name,password)) {
+            }
             localStorage.lastname = document.getElementById("user").value;
          sign();
+    }
+    function Check(name , password)
+    {
+        window.open ('1.html', 'newwindow', 'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no') ;
     }
     function sign()
     {
@@ -154,18 +169,37 @@
     setInterval("time()",100);
    function time()
    {
-       today = new Date();
+       var today = new Date();
        var date;
        var time;
        date =(today.getFullYear())  + "/"+ (today.getMonth()%12 +1 ) + "/" + today.getDate() + "  " ;
-       time =today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+       var m=today.getMinutes();
+       if(m<10)
+       m="0"+m;
+       var s=today.getSeconds();
+       if(s<10)
+       s="0"+s;
+       time =today.getHours()+":"+m+":"+s;
        document.getElementById("time").innerHTML=date+time;
    }
 </script>
 
-<marquee style="width: 1100px; height: 200px" scrollamount="10" direction="left" >
-        <p  style=" color:white; fon-size:4px;font-family: 微软雅黑" >欢迎大神造访~~~！！！</p >
-</marquee >
+<script type="text/javascript">
+    var user_array = new Array();
+    user_array=JSON.parse(localStorage.user_array);
+    localStorage.user_num=0;
+    function f()
+    {
+        var str="yanglei";
+        var user ={name:str,
+                         password:"123456"};
+        user_array[localStorage.user_num]=user;
+        localStorage.user_array=JSON.stringify(user_array);
+        var a=JSON.parse(localStorage.user_array);
+        alert(a[0].name+" "+a[0].password);
+    }
+</script>
+
 
 
 </body>
