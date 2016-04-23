@@ -131,7 +131,7 @@
     }
     function SignUp()
     {
-        alert(localStorage.user_num);
+        //alert(localStorage.user_num);
         var name=document.getElementById("name").value;
         var password=document.getElementById("password").value;
             if(Check(name,password)) {
@@ -143,7 +143,7 @@
     {
         var a=JSON.parse(localStorage.user_array);
         for(var i=0;i<localStorage.user_num;i++) {
-            alert("22222222");
+            //alert("22222222");
             if(name==a[i].name){
                 if(password==a[i].password)
                 return true;
