@@ -18,7 +18,7 @@
         var password=document.getElementById("password").value;
         if(check(name,password))
         {
-            if (localStorage.user_array != "")
+            if (typeof (localStorage.user_array) != "undefined")
                 var array = JSON.parse(localStorage.user_array);
             else
                 var array = new Array();
@@ -33,7 +33,7 @@
 
     function check(name,password)
     {
-        if (localStorage.user_array != "")
+        if (typeof (localStorage.user_array) != "undefined")
             var a = JSON.parse(localStorage.user_array);
         else
             var a = new Array();
