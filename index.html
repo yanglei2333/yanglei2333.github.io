@@ -57,13 +57,15 @@
     </audio>
         </div>
 
-    <div style="position:absolute;left: 80%;top:5%;">
-        <input id="name" value="your name"/>
-        <input type="button" id="sign" value="登录" onClick="SignUp();"/>
-        <b></b>
-        <input id="password" value="your password"/>
+    <div  style="position:absolute;left: 70%;top:5%;">
+        <p id="sign1">用户名：<input id="name" value="your name"/>
+        <input type="button" value="登录" onClick="SignUp();"/>
+        <input type="button" id="register" value="注册" onClick="Register();"/>
+        </p>
+        <p id="sign2" >密&nbsp&nbsp&nbsp码：<input id="password" value="your password"/></p>
         <input type="button" id="quit" value="注销" onClick="LogOut();"/>
-        </div>
+
+    </div>
 
     <input type="button" value="test" onClick="f();"/>
 
@@ -117,42 +119,64 @@
 
 
 <script type="text/javascript">
-    if(typeof (localStorage.lastname)!="undefined") {
-        sign();
+   // localStorage.removeItem(state);
+    if(localStorage.state="undefined"&&typeof (localStorage.c)!="undefined") {
+        sign(localStorage.state);
     }
     else {
-        document.getElementById("quit").style.visibility="hidden";
+        LogOut();
     }
     function SignUp()
     {
+        //alert(localStorage.user_num);
         var name=document.getElementById("name").value;
         var password=document.getElementById("password").value;
             if(Check(name,password)) {
+                sign(name);
+                localStorage.state=name;
             }
-            localStorage.lastname = document.getElementById("user").value;
-         sign();
     }
     function Check(name , password)
     {
-        window.open ('1.html', 'newwindow', 'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no') ;
+        var a=JSON.parse(localStorage.user_array);
+        for(var i=0;i<localStorage.user_num;i++) {
+            if(name==a[i].name){
+                if(password==a[i].password)
+                return true;
+                else {
+                    alert("密码错误！！");
+                    return false;
+                }
+            }
+        }
+        alert("不存在此用户名！！");
+        return false;
     }
-    function sign()
+    function sign(name)
     {
-        document.getElementById("user").style.visibility = "hidden";
-        document.getElementById("sign").style.visibility = "hidden";
-        document.getElementById("welcome").innerHTML = localStorage.lastname;
+        document.getElementById("sign1").style.visibility = "hidden";
+        document.getElementById("sign2").style.visibility = "hidden";
+        document.getElementById("welcome").innerHTML = name;
         document.getElementById("wel").style.visibility = "visible";
         document.getElementById("quit").style.visibility="visible";
     }
     function LogOut()
     {
-        localStorage.removeItem("lastname");
+        document.getElementById("name").value="";
+        document.getElementById("password").value="";
+        document.getElementById("sign1").style.visibility = "visible";
+        document.getElementById("sign2").style.visibility = "visible";
         document.getElementById("wel").style.visibility = "hidden";
-        document.getElementById("user").style.visibility = "visible";
-        document.getElementById("sign").style.visibility = "visible";
-        localStorage["pagecount"]=0;
+        document.getElementById("quit").style.visibility="hidden";
+        localStorage.pagecount=0;
+        localStorage.state="undefined";
+
     }
 
+    function Register()
+    {
+        window.open ('1.html', 'newwindow', 'height=200, width=400, top=300, left=400, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no')
+    }
     if (localStorage.pagecount&&localStorage.lastname)
     {
         localStorage.pagecount=Number(localStorage.pagecount) +1;
@@ -187,7 +211,6 @@
 <script type="text/javascript">
     var user_array = new Array();
     user_array=JSON.parse(localStorage.user_array);
-    localStorage.user_num=0;
     function f()
     {
         var str="yanglei";
@@ -199,6 +222,7 @@
         alert(a[0].name+" "+a[0].password);
     }
 </script>
+
 
 
 

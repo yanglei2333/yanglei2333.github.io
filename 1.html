@@ -2,11 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>跳转界面</title>
+    <title>注册界面</title>
 </head>
 <body>
-<p>
-这是一个跳转界面
-</p>
+    <p>UserName:<input type="text" id="name"/></p>
+    <p>Password:<input type="text" id="password"/></p>
+<input type="button" value="注册" onclick="Register();">
+    </form>
+
+<script>
+    function Register()
+    {
+        var name=document.getElementById("name").value;
+        var password=document.getElementById("password").value;
+        if(check(name,password))
+        {
+            var array=new Array();
+            array=JSON.parse(localStorage.user_array);
+            var user={name:name,password:password};
+            array[localStorage.user_num]=user;
+            localStorage.user_num++;
+            localStorage.user_array=JSON.stringify(array);
+            alert("注册成功！！");
+            window.close();
+        }
+    }
+
+    function check(name,password)
+    {
+        var a=JSON.parse(localStorage.user_array);
+        for(var i=0;i<localStorage.user_num;i++)
+        {
+            if(a[i].name==name)
+            {
+                alert("该用户已存在！！");
+                return false;
+            }
+        }
+        if(name.length==0)
+        {
+            alert("用户名为空! !");
+            return false;
+        }
+
+        if(password.length<6)
+        {
+            alert("密码小于6位数！！");
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>
