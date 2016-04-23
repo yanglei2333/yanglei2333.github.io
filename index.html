@@ -121,9 +121,9 @@
 <script type="text/javascript">
    // localStorage.removeItem(state);
   // localStorage.user_num=0;
-   if(NaN(localStorage.user_num))
+   if(isNaN(localStorage.user_num))
    localStorage.user_num=0;
-    if(localStorage.state="undefined"&&typeof (localStorage.state)!="undefined") {
+    if(localStorage.state!="undefined"&&typeof (localStorage.state)!="undefined") {
         sign(localStorage.state);
     }
     else {
@@ -131,7 +131,7 @@
     }
     function SignUp()
     {
-        //alert(localStorage.user_num);
+        alert(localStorage.user_num+" "+localStorage.state);
         var name=document.getElementById("name").value;
         var password=document.getElementById("password").value;
             if(Check(name,password)) {
@@ -141,7 +141,8 @@
     }
     function Check(name , password)
     {
-        var a=JSON.parse(localStorage.user_array);
+        var a=new Array();
+        a=JSON.parse(localStorage.user_array);
         for(var i=0;i<localStorage.user_num;i++) {
             //alert("22222222");
             if(name==a[i].name){
