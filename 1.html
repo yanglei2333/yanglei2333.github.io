@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,10 @@
     <title>注册界面</title>
 </head>
 <body>
-<form>
-    <p>UserName:<input type="text" id="name"/></p>
-    <p>Password:<input type="text" id="password"/></p>
+<p>UserName:<input type="text" id="name"/></p>
+<p>Password:<input type="text" id="password"/></p>
 <input type="button" value="注册" onclick="Register();">
-    </form>
+</form>
 
 <script>
     function Register()
@@ -18,8 +18,10 @@
         var password=document.getElementById("password").value;
         if(check(name,password))
         {
-            var array=new Array();
-            array=JSON.parse(localStorage.user_array);
+            if (localStorage.user_array != "")
+                var array = JSON.parse(localStorage.user_array);
+            else
+                var array = new Array();
             var user={name:name,password:password};
             array[localStorage.user_num]=user;
             localStorage.user_num++;
@@ -31,7 +33,10 @@
 
     function check(name,password)
     {
-        var a=JSON.parse(localStorage.user_array);
+        if (localStorage.user_array != "")
+            var a = JSON.parse(localStorage.user_array);
+        else
+            var a = new Array();
         for(var i=0;i<localStorage.user_num;i++)
         {
             if(a[i].name==name)
